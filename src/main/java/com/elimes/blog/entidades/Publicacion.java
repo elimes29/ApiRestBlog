@@ -1,10 +1,15 @@
 package com.elimes.blog.entidades;
 
+import java.util.HashSet;
+
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -22,6 +27,9 @@ public class Publicacion {
     private String descripcion;
     @Column(name = "contenido", nullable = false)
     private String contenido;
+    
+    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Comentario> comenterios = new HashSet<>();
 
     public Publicacion() {
     }

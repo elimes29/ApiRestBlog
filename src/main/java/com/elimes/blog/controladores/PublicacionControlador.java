@@ -8,6 +8,7 @@ package com.elimes.blog.controladores;
 import com.elimes.blog.dto.PublicacionDto;
 import com.elimes.blog.dto.PublicacionRespuesta;
 import com.elimes.blog.servicios.PublicacionServicio;
+import com.elimes.blog.utilidades.AppConstantes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,11 @@ public class PublicacionControlador {
     }
      */
     @GetMapping()
-    public PublicacionRespuesta listarPublicaciones(@RequestParam(value = "pageNo", defaultValue = "0", required = false) int numeroDePagina, @RequestParam(value = "pageSize", defaultValue = "10", required = false) int publicacionesPorPagina, @RequestParam(value = "sortBy", defaultValue = "id", required = false) String ordenaPor, @RequestParam(value = "sortDir", defaultValue = "asc", required = false) String desAsc ) {
+    public PublicacionRespuesta listarPublicaciones(
+            @RequestParam(value = "pageNo", defaultValue = AppConstantes.NUMERO_DE_PAGINA_POR_DEFECTO, required = false) int numeroDePagina, 
+            @RequestParam(value = "pageSize", defaultValue = AppConstantes.NUMERO_DE_PAGINA_POR_DEFECTO, required = false) int publicacionesPorPagina, 
+            @RequestParam(value = "sortBy", defaultValue = AppConstantes.ORDENAR_POR_DEFECTO, required = false) String ordenaPor, 
+            @RequestParam(value = "sortDir", defaultValue = AppConstantes.ORDENAR_DIRECCION_POR_DEFECTO, required = false) String desAsc ) {
         return publicacionServicio.listarPublicaciones(numeroDePagina, publicacionesPorPagina, ordenaPor, desAsc);
     }
 
