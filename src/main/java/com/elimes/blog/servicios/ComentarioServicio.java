@@ -6,6 +6,8 @@
 package com.elimes.blog.servicios;
 
 import com.elimes.blog.dto.ComentarioDto;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -14,6 +16,9 @@ import com.elimes.blog.dto.ComentarioDto;
 public interface ComentarioServicio {
     
     public ComentarioDto crearComentario(Long publicacionId, ComentarioDto comenterioDto);
+    
+    @Query("SELECT c FROM Comentarios c WHERE c.publicacionId =:publicacionId")
+    public List<ComentarioDto> obtenerComentariosDePublicacionId(Long publicacionId);
     
     
 }

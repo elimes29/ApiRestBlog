@@ -40,7 +40,7 @@ public class PublicacionControlador {
     @GetMapping()
     public PublicacionRespuesta listarPublicaciones(
             @RequestParam(value = "pageNo", defaultValue = AppConstantes.NUMERO_DE_PAGINA_POR_DEFECTO, required = false) int numeroDePagina, 
-            @RequestParam(value = "pageSize", defaultValue = AppConstantes.NUMERO_DE_PAGINA_POR_DEFECTO, required = false) int publicacionesPorPagina, 
+            @RequestParam(value = "pageSize", defaultValue = AppConstantes.MEDIDA_DE_PAGINA_POR_DEFECTO, required = false) int publicacionesPorPagina, 
             @RequestParam(value = "sortBy", defaultValue = AppConstantes.ORDENAR_POR_DEFECTO, required = false) String ordenaPor, 
             @RequestParam(value = "sortDir", defaultValue = AppConstantes.ORDENAR_DIRECCION_POR_DEFECTO, required = false) String desAsc ) {
         return publicacionServicio.listarPublicaciones(numeroDePagina, publicacionesPorPagina, ordenaPor, desAsc);

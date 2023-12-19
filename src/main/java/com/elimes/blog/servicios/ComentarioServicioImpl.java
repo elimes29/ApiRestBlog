@@ -7,7 +7,8 @@ import com.elimes.blog.entidades.Publicacion;
 import com.elimes.blog.excepciones.ResourceNotFoundException;
 import com.elimes.blog.repositorios.ComentarioRepositorio;
 import com.elimes.blog.repositorios.PublicacionRepositorio;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,5 +53,12 @@ public class ComentarioServicioImpl implements ComentarioServicio{
         comentario.setId(comentarioDto.getId());
         
         return comentario;      
+    }
+
+    @Override
+    public List<ComentarioDto> obtenerComentariosDePublicacionId(Long publicacionId) {
+        List<Comentario> comentarios = comentarioRepositorio.findByPublicacionId(publicacionId);
+        return comentarios.stream().map(comentario -> mapearDto(comentario)).collect(Collectors.toList());
+        
     }
 }
